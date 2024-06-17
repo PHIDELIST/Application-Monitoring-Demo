@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  grafana:
+    image: grafana/grafana-enterprise
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+     - '3000:3000'
+    depends_on:
+      - prometheus 
+    networks:
+      - prom-graf-network
+  prometheus:
+    build: ./prom  
+    container_name: prometheus
+    restart: unless-stopped
+    ports:
+      - '9090:9090'
+    networks:
+      - prom-graf-network
+
+  # dotnet-api:
+  #   build: ./dotnet-api
+  #   container_name: dotnet-api
+  #   restart: unless-stopped
+  #   ports:
+  #     - '5362:5361'
+  #   networks:
+  #     - prom-graf-network
+
+networks:
+  prom-graf-network:
+    driver: bridge
