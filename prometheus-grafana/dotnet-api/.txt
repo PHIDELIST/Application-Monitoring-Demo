@@ -1,0 +1,2 @@
+dotnet add package prometheus-net
+dotnet add package prometheus-net.AspNetCore
