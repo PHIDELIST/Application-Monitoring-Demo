@@ -55,7 +55,7 @@ public class Program
             });
         }
 
-        app.MapGet("/api/healthcheck", () => true);
+        app.MapGet("/", () => true);
 
         app.MapControllers();
         app.MapMetrics(); // Expose the /metrics endpoint
