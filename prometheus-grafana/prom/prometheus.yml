@@ -10,12 +10,13 @@ global:
 # Here it's Promitself.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: 'dotnet-api'
+  - job_name: 'fluentd'
 
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
 
     static_configs:
-      - targets: ['dotnet-api:8080','host.docker.internal:5362',]
+      # - targets: ['fluentd:24231','host.docker.internal:5362',]
+      - targets: ['host.docker.internal:24231']
         labels:
-          group: 'dotnet-api'
+          group: 'fluentd'
