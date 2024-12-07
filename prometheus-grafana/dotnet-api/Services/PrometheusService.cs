@@ -15,11 +15,16 @@ namespace api.Services.PrometheusService
             RequestCounter.Inc(); // Increment the counter each time the method is called
             ActiveRequests.Inc(); // Increment the guage to indicate an active request
 
-            return new List<Prom>
+            var result =  new List<Prom>
             {
                 new Prom{ Id = 1, Name = "Prometheus: Always Watching, Always Counting" },
                 new Prom{ Id = 2, Name = "Prometheus: Keeping Metrics Hot" }
             };
+
+            ActiveRequests.Dec(); // decrement guage after processing 
+
+            return result;
         }
+
     }
 }
