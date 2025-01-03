@@ -29,6 +29,15 @@ services:
       - "24224:24224/udp"
     networks:
       - opensearch-net
+
+  fluent-bit:
+    container_name: fluent-bit
+    image: docker.io/fluent/fluent-bit
+    volumes:
+      - ./fluentbit/fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
+      - ./test.log/test.log:/var/log/test.log
+    networks:
+      - opensearch-net
   opensearch:
     container_name: opensearch
     image: docker.io/opensearchproject/opensearch:latest
